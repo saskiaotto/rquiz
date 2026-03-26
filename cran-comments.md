@@ -1,0 +1,26 @@
+## R CMD check results
+
+0 errors | 0 warnings | 1 note
+
+* This is a new submission.
+
+* The NOTE mentions possibly misspelled words: "UI" (user interface),
+  "cloze" (a standard term in language testing for fill-in-the-blank
+  exercises), and on R-oldrelease also "customizable" (correct US English
+  spelling). All are correct.
+
+* The NOTE flags URLs to codepen.io as "403 Forbidden" — CodePen blocks
+  automated URL checkers but the links work in a browser. These are credit
+  links to the original code that inspired parts of this package.
+
+* On R-oldrelease (4.4.3), an additional NOTE reports "Author field differs
+  from that derived from Authors@R" due to how ORCID is rendered in older
+  R versions. This is a known cosmetic difference and does not affect
+  functionality.
+
+## Test environments
+
+* Local: macOS Tahoe (aarch64-apple-darwin20), R 4.5.2
+* win-builder: Windows Server 2022 x64, R 4.5.3 (R-release)
+* win-builder: Windows Server 2022 x64, R 4.4.3 (R-oldrelease)
+* win-builder: Windows Server 2022 x64, R-devel (2026-03-25)

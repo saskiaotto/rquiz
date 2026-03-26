@@ -159,4 +159,4 @@ GitLab (private) to GitHub (public) and submitted to CRAN.
   - `singleQuestion()`: Single-choice quiz with immediate feedback.
   - `multiQuestions()`: Multi-page quiz with timer and results page.
 * Built with a mix of vanilla JavaScript and jQuery/jQuery UI.
-* Used in Data Science lectures at Universitat Hamburg since 2020.
+* Used in Data Science lectures at the University of Hamburg since 2020.
