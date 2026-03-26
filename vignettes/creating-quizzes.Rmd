@@ -416,5 +416,5 @@ Each quiz type has its own pair: `singleQuestionOutput()` / `renderSingleQuestio
 
 ## Next Steps
 
-- Browse the [Gallery](gallery.html) for interactive examples with different configurations
-- Check the [Function Reference](../reference/index.html) for all available parameters
+- Browse the [Gallery](https://saskiaotto.github.io/rquiz/articles/gallery.html) for interactive examples with different configurations
+- Check the [Function Reference](https://saskiaotto.github.io/rquiz/reference/index.html) for all available parameters

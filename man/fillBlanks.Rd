@@ -61,7 +61,7 @@ will be shown in the header box.}
 
 \item{description}{character; a short description below the title. If set to
 \code{NULL} (default), a language-specific default text is used (e.g.
-"Fill in the blanks." for English, "Fuelle die Luecken." for German).
+"Fill in the blanks." for English, "Fülle die Lücken." for German).
 Set to \code{""} (empty string) to hide the description entirely.}
 
 \item{language}{character; the language of the quiz interface. Sets button labels,

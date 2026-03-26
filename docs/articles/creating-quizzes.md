@@ -484,8 +484,8 @@ Each quiz type has its own pair:
 ## Next Steps
 
 - Browse the
-  [Gallery](https://saskiaotto.github.io/rquiz/articles/gallery.md) for
-  interactive examples with different configurations
+  [Gallery](https://saskiaotto.github.io/rquiz/articles/gallery.html)
+  for interactive examples with different configurations
 - Check the [Function
-  Reference](https://saskiaotto.github.io/rquiz/reference/index.md) for
-  all available parameters
+  Reference](https://saskiaotto.github.io/rquiz/reference/index.html)
+  for all available parameters

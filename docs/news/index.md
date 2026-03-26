@@ -156,7 +156,7 @@ GitLab (private) to GitHub (public) and submitted to CRAN.
   JSON generation in
   [`convert2JSON()`](https://saskiaotto.github.io/rquiz/reference/convert2JSON.md)
   with
-  [`jsonlite::toJSON()`](https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html).
+  [`jsonlite::toJSON()`](https://rdrr.io/pkg/jsonlite/man/fromJSON.html).
   Special characters in questions (quotes, backslashes) are now
   correctly escaped.
 

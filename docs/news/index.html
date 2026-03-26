@@ -85,7 +85,7 @@
 <div class="section level3">
 <h3 id="improvements-1-0-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-1-0-0"></a></h3>
 <ul><li><p>Removed jQuery dependency: all JavaScript code now uses Vanilla JS. This eliminates the bundled jQuery 3.5.1, jQuery UI, and jQuery UI Touch Punch libraries, reducing the package size.</p></li>
-<li><p>Replaced fragile <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code>-based JSON generation in <code><a href="../reference/convert2JSON.html">convert2JSON()</a></code> with <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">jsonlite::toJSON()</a></code>. Special characters in questions (quotes, backslashes) are now correctly escaped.</p></li>
+<li><p>Replaced fragile <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code>-based JSON generation in <code><a href="../reference/convert2JSON.html">convert2JSON()</a></code> with <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">jsonlite::toJSON()</a></code>. Special characters in questions (quotes, backslashes) are now correctly escaped.</p></li>
 <li><p>Unified HTML structure across all three quiz types: consistent class naming (title, question, main, options, buttons), consistent padding, font sizes, and container hierarchy.</p></li>
 <li><p>Unified design defaults across all three quiz types (consistent colors, button styles, border-radius, responsive layout).</p></li>
 <li><p>Fixed widget scoping: all DOM queries are now scoped to the widget container, preventing conflicts when multiple quiz widgets appear on the same page.</p></li>
