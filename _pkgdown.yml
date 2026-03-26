@@ -1,0 +1,62 @@
+url: https://saskiaotto.github.io/rquiz/
+
+authors:
+  Saskia Otto:
+    href: https://github.com/saskiaotto
+
+template:
+  bootstrap: 5
+  bslib:
+    navbar-bg: "#5F5F5F"
+    navbar-light-color: "#FFFFFF"
+    navbar-light-active-color: "#28A745"
+    navbar-light-hover-color: "#3498DB"
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: Creating Quizzes
+        href: articles/creating-quizzes.html
+      - text: Gallery
+        href: articles/gallery.html
+      - text: "---"
+      - text: Demo Files
+        href: articles/slides-demo.html
+      # - text: "---"
+      - text: "  - Quarto HTML Demo"
+        href: quarto-html-demo.html
+      - text: "  - Slidy Presentation Demo"
+        href: slidy-demo.html
+      - text: "  - RevealJS Presentation Demo"
+        href: revealjs-demo.html
+
+reference:
+- title: Quiz Functions
+  desc: Create interactive quizzes
+  contents:
+  - singleQuestion
+  - multiQuestions
+  - fillBlanks
+  - rquizTheme
+
+- title: Input Validation
+  desc: Validate quiz input data before creating quizzes
+  contents:
+  - checkSingleQuestion
+  - checkMultiQuestions
+  - checkFillBlanks
+
+- title: Shiny Bindings
+  desc: Use quizzes in Shiny applications
+  contents:
+  - singleQuestionOutput
+  - renderSingleQuestion
+  - multiQuestionsOutput
+  - renderMultiQuestions
+  - fillBlanksOutput
+  - renderFillBlanks

@@ -1,0 +1,208 @@
+---
+title: "Marine Biology Quiz"
+subtitle: "rquiz Demo - Slidy Presentation"
+author: "Saskia Otto"
+date: "`r Sys.Date()`"
+output:
+  slidy_presentation:
+    font_adjustment: 0
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(rquiz)
+
+### Dark ocean theme
+oceanDark <- rquizTheme(
+  # Define font
+  fontFamily = "Gill Sans MT, Gill Sans, GillSans, sans-serif", # = slidy font
+  fontSize = 20,
+  # Define title
+  titleCol = "#FFFFFF",
+  titleBg = "#2AA198",
+  # Define question area (=description in fill-the-blanks quiz)
+  questionCol = "#FFFFFF",
+  questionBg = "#16213E",  
+  # Define main quiz body (with answer options/cloze text)
+  mainCol = "#1A2A3A",
+  mainBg = "#EFF2F3",
+  optionBg = "#DFE5E7",
+  optionLabelBg = "#0F3460",
+  # Define buttons
+  navButtonCol = "#FFFFFF",
+  navButtonBg = "#2AA198",
+  tipButtonCol = "#B0BEC5",
+  tipButtonBg = "#0F3460",
+  solutionButtonCol = "#B0BEC5",
+  solutionButtonBg = "#0F3460",
+  # Define tip and solution text areas
+  tipAreaCol = "#FFFFFF",
+  tipAreaBg = "#2AA198",
+  tipAreaBorder = "#0F3460",
+  solutionAreaCol = "#FFFFFF",
+  solutionAreaBg = "#3498DB",
+  solutionAreaBorder = "#0F3460"
+)
+
+### You can modify the theme for a specific quiz type
+# E.g., do not colour the question section dark in the multiQuestion quizzes
+oceanDarkMQQ <- oceanDark
+oceanDarkMQQ$questionCol <- "#1A2A3A"
+oceanDarkMQQ$questionBg <- "#EFF2F3"
+```
+
+## About this demo
+
+- This presentation demonstrates the three quiz functions from the **rquiz** package — `singleQuestion()`, `multiQuestions()`, and `fillBlanks()` — with quizzes about marine biology.
+- Each quiz type is shown twice: first with default settings, then with a custom dark ocean theme applied via `rquizTheme()`.
+
+**Tips:**
+
+- Slidy slides automatically expand to fit the quiz content, so `scroll = TRUE` is usually not needed.
+- To style text within questions (e.g. species names in italics), use HTML tags such as `<em>` (italics), `<strong>` (bold), `<code>` (inline code), or `<span>` with inline CSS directly in the question or answer option strings.
+
+
+## Single Question | `singleQuestion()`
+### Default settings
+
+This multiple-choice question uses the default rquiz styling. Select all correct answers and click **Submit**. Once you change your answer options, you can re-submit.
+
+```{r, echo=FALSE}
+### Example of a multiple-choice question here
+myQuestion <- list(
+  question = "Which of the following statements about coral reefs are true? (Select all that apply)",
+  options = c("Coral reefs cover less than 1% of the ocean floor",
+    "They support approximately 25% of all marine species",
+    "Coral polyps are animals, not plants",
+    "Coral reefs are found exclusively in tropical, warm waters",
+    "Ocean acidification threatens the calcification process of corals"),
+  answer = c(1, 2, 3, 5),
+  tip = "Hint: One of the statements contains a common misconception — cold-water and deep-water coral systems do exist, though they differ from tropical reefs."
+)
+# checkSingleQuestion(myQuestion)
+
+singleQuestion(
+  x = myQuestion,
+  title = "Coral Reefs",
+  showTipButton = TRUE
+)
+```
+
+## Single Question | `singleQuestion()`
+### Ocean theme
+
+The same quiz with a custom dark ocean theme applied via `rquizTheme()`.
+
+```{r, echo=FALSE}
+singleQuestion(
+  x = myQuestion,
+  title = "Coral Reefs",
+  showTipButton = TRUE,
+  theme = oceanDark
+)
+```
+
+
+## Multi-Question Quiz | `multiQuestions()`
+### Default settings
+
+Navigate through the questions with **Previous**/**Next**. Your score is shown at the end and questions are shuffled each time you try the quiz again. Note: To style text within questions (e.g. species names in italics), use HTML tags such as `<em>` (italics), `<strong>` (bold), `<code>` (inline code) or `<span>` with inline CSS directly in the question or answer option strings.
+
+```{r, echo=FALSE}
+### Example of single-choice questions only here
+myQuestionList <- list(
+  q1 = list(
+    question = "What percentage of the Earth's surface is covered by oceans?",
+    options = c("About 50%", "About 61%", "About 71%", "About 81%"),
+    answer = 3,
+    tip = "More than two-thirds."
+  ),
+  q2 = list(
+    question = "How many hearts does an octopus have?",
+    options = c("One", "Two", "Three", "Four", "Five"),
+    answer = 3,
+    tip = "Hint: Two of them serve exclusively the gills."
+  ),
+  q3 = list(
+    question = "In seahorses (<em>Hippocampus</em> spp.), who carries the developing embryos?",
+    options = c("The female, in a specialised brood pouch",
+      "The male, in a specialised brood pouch", "Both parents take turns",
+      "Neither — eggs are released into open water", "A third-party host organism"),
+    answer = 2,
+    tip = "Hint: Look for the visible ventral pouch on one of the sexes."
+  ),
+  q4 = list(
+    question = "What is the approximate maximum lifespan of the Greenland shark (<em>Somniosus microcephalus</em>)?",
+    options = c("Around 100 years", "Around 200 years", "Around 300 years",
+      "Around 400 years", "Around 600 years"),
+    answer = 4,
+    tip = "Hint: This makes them the longest-lived vertebrates known to science — older than the founding of the United States."
+  )
+)
+# checkMultiQuestions(myQuestionList)
+
+multiQuestions(
+  x = myQuestionList,
+  title = "Ocean Facts",
+  shuffle = TRUE,
+  showTipButton = TRUE
+)
+```
+
+
+## Multi-Question Quiz | `multiQuestions()`
+### Ocean theme
+
+The same multi-question quiz with the dark (modified) ocean theme.
+
+```{r, echo=FALSE}
+multiQuestions(
+  x = myQuestionList,
+  title = "Ocean Facts",
+  shuffle = TRUE,
+  showTipButton = TRUE,
+  theme = oceanDarkMQQ
+)
+```
+
+
+## Fill in the Blanks | `fillBlanks()`
+### Default settings
+
+Type the missing words into the blank fields. Click **Submit** to check your answers.
+
+```{r, echo=FALSE}
+myTxt <- list(
+    cloze = "Coral reefs are built by tiny animals called $$!polyps!$$.
+      They live in a symbiotic relationship with $$!algae!$$ called
+      <strong>zooxanthellae</strong>, which provide them with energy through
+      $$!photosynthesis!$$.",
+    addOptions = c("bacteria", "plankton", "chemosynthesis", "fungi")
+  )
+# checkFillBlanks(myTxt)
+
+fillBlanks(
+  x = myTxt,
+  title = "Coral Reef Biology",
+  description = "Complete the paragraph about coral reef ecosystems.",
+  showTipButton = TRUE
+)
+```
+
+
+## Fill in the Blanks | `fillBlanks()`
+### Ocean theme
+
+The same fill-in-the-blank quiz with the dark ocean theme.
+
+```{r, echo=FALSE}
+fillBlanks(
+  x = myTxt,
+  title = "Coral Reef Biology",
+  description = "Complete the paragraph about coral reef ecosystems.",
+  showTipButton = TRUE,
+  theme = oceanDark
+)
+```
+

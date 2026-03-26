@@ -1,0 +1,491 @@
+# Creating Quizzes with rquiz
+
+## Overview
+
+**rquiz** provides three types of interactive quizzes as HTML widgets:
+
+| Function | Description |
+|:---|:---|
+| [`singleQuestion()`](https://saskiaotto.github.io/rquiz/reference/singleQuestion.md) | A single question with instant feedback (single- or multiple-choice) |
+| [`multiQuestions()`](https://saskiaotto.github.io/rquiz/reference/multiQuestions.md) | A multi-question quiz with navigation, timer, and results |
+| [`fillBlanks()`](https://saskiaotto.github.io/rquiz/reference/fillBlanks.md) | A fill-in-the-blank cloze text |
+
+All quizzes work in R Markdown, Quarto documents, HTML presentations
+(e.g. revealJS), and Shiny applications.
+
+## Defining Questions
+
+### Single question (`singleQuestion`)
+
+Questions are defined as a named list with 3 (or 4) elements:
+
+``` r
+
+myQuestionSC <- list(
+  question = "Which city hosted the 2024 Summer Olympics?", # the question text
+  options = c("Berlin", "London", "Paris", "Madrid"),  # answer options
+  answer = 3,  # index of the correct answer (Paris)
+  tip = "Think about the Eiffel Tower."  # optional tip text
+)
+```
+
+For **single-choice**, `answer` is a single integer. For
+**multiple-choice**, `answer` is a vector of integers. The quiz mode is
+auto-detected from the length of `answer`:
+
+``` r
+
+myQuestionMC <- list(
+  question = "Which of the following are prime numbers?",
+  options = c("2", "4", "7", "9", "11", "15"),
+  answer = c(1, 3, 5),  # indices of correct options (2, 7, 11)
+  tip = "Prime numbers are only divisible by 1 and themselves."
+)
+```
+
+You can validate your question with
+[`checkSingleQuestion()`](https://saskiaotto.github.io/rquiz/reference/checkSingleQuestion.md)
+before passing it to the quiz function. This catches common mistakes
+like missing fields, out-of-range indices, or misspelled element names:
+
+``` r
+
+checkSingleQuestion(myQuestionSC)  # returns invisibly if valid
+
+# Common mistake: unnamed or partially named list
+bad <- list("What is 2+2?", c("3", "4"), answer = 2)
+checkSingleQuestion(bad)
+#> Error: The question list must have named elements: 'question', 'options',
+#>   and 'answer' (plus optionally 'tip'). Missing: question, options.
+#>   Example: list(question = "What is 2+2?", options = c("3", "4", "5"), 
+#>   answer = 2)
+#>   See ?checkSingleQuestion or ?singleQuestion for examples.
+```
+
+### Multiple questions (`multiQuestions`)
+
+Pass a list of question lists. Each question follows the same structure.
+Sub-lists can be named (e.g. `q1`, `q2`) for readability, but this is
+not required.
+
+**Single-choice only** - all questions have a single correct answer:
+
+``` r
+
+sportQuiz <- list(
+  q1 = list(
+    question = "Which city hosted the 2024 Summer Olympics?",
+    options = c("Athens", "London", "Paris", "Tokyo"),
+    answer = 3
+  ),
+  q2 = list(
+    question = "Which sport was added to the Olympics at the 2024 Paris Games?",
+    options = c("Skateboarding", "Breakdance", "Surfing", "Sport Climbing"),
+    answer = 2
+  ),
+  q3 = list(
+    question = "At the 1900 Olympics in Paris, one sport was featured that has never returned to the Games since. Which one?",
+    options = c("Live pigeon shooting", "Underwater archery", "Synchronized sneezing", 
+      "Backwards horse vaulting"),
+    answer = 1
+  )
+)
+```
+
+**Mixed with tips** - some questions include a custom tip text:
+
+``` r
+
+sportQuizWithTips <- list(
+  q1 = list(
+    question = "Which city hosted the 2024 Summer Olympics?",
+    options = c("Athens", "London", "Paris", "Tokyo"),
+    answer = 3,
+    tip = "They speak French there."
+  ),
+  q2 = list(
+    question = "Which sport was added to the Olympics at the 2024 Paris Games?",
+    options = c("Skateboarding", "Breakdance", "Surfing", "Sport Climbing"),
+    answer = 2
+    # no tip for this question - the tip button won't appear here
+  )
+)
+```
+
+**Multiple-choice** - if **any** question has multiple correct answers
+(`length(answer) > 1`), all questions automatically use checkboxes:
+
+``` r
+
+scienceQuiz <- list(
+  q1 = list(
+    question = "Which of these are noble gases?",
+    options = c("Helium", "Oxygen", "Neon", "Iron"),
+    answer = c(1, 3)
+  ),
+  q2 = list(
+    question = "Which planet is closest to the Sun?",
+    options = c("Venus", "Mercury", "Mars"),
+    answer = 2  # single correct answer, but rendered as checkbox
+  )
+)
+```
+
+Validate the entire question list with
+[`checkMultiQuestions()`](https://saskiaotto.github.io/rquiz/reference/checkMultiQuestions.md):
+
+``` r
+
+checkMultiQuestions(sportQuiz)  # returns invisibly if valid
+
+# Common mistake: flat list instead of list of lists
+bad <- list(question = "Q1?", options = c("A", "B"), answer = 1,
+            question = "Q2?", options = c("C", "D"), answer = 2)
+checkMultiQuestions(bad)
+#> Error: `x` looks like a single question, not a list of questions.
+#>   Wrap it in an outer list: list(q1 = list(question = ..., options = ..., 
+#>   answer = ...))
+#>   See ?checkMultiQuestions or ?multiQuestions for examples.
+```
+
+### Fill-in-the-blank (`fillBlanks`)
+
+Define a cloze text with `$$!answer!$$` markers for blank fields.
+Optionally add distractor options:
+
+``` r
+
+rQuiz <- list(
+  cloze = "R is a $$!programming!$$ language for $$!statistical computing!$$.",
+  addOptions = c("natural", "colloquial", "movies")
+)
+```
+
+Normal text wraps automatically across lines. For code formatting, use
+`<pre>` tags — but note that inside `<pre>`, you need `<br>` tags for
+explicit line breaks:
+
+``` r
+
+codeQuiz <- list(
+  cloze = "<pre>x $$!<-!$$ c(1, 2, 3)
+$$!mean!$$(x)</pre>",
+  addOptions = c("=", "->", "median", "sum")
+)
+```
+
+Validate with
+[`checkFillBlanks()`](https://saskiaotto.github.io/rquiz/reference/checkFillBlanks.md):
+
+``` r
+
+checkFillBlanks(rQuiz)  # returns invisibly if valid
+
+# Common mistake: misspelled element name
+bad <- list(clozed = "R is a $$!programming!$$ language.")
+checkFillBlanks(bad)
+#> Error: Unknown element(s) in `x`: 'clozed'.
+#>   Allowed elements are: 'cloze' (required) and 'addOptions' (optional).
+#>   See ?checkFillBlanks or ?fillBlanks for examples.
+```
+
+## Creating a Quiz
+
+Once your data is defined, pass it to the quiz function:
+
+``` r
+
+myQuestionSC <- list(
+  question = "Which city hosted the 2024 Summer Olympics?", # the question text
+  options = c("Berlin", "London", "Paris", "Madrid"),  # answer options
+  answer = 3,  # index of the correct answer (Paris)
+  tip = "Think about the Eiffel Tower."  # optional tip text
+)
+singleQuestion(
+  x = myQuestionSC,
+  title = "Geography Quiz",
+  showTipButton = TRUE
+)
+```
+
+## Key Parameters
+
+All three quiz functions share a common set of parameters:
+
+### Content & behavior
+
+| Parameter | Description | Default |
+|:---|:---|:---|
+| `title` | Quiz title text | `NULL` / `"Quiz"` |
+| `language` | Language for UI text (`"en"`, `"de"`, `"fr"`, `"es"`) | `"en"` |
+| `shuffle` | Randomize option/question order | `FALSE` |
+| `showTipButton` | Show a hint button | `FALSE` |
+| `showSolutionButton` | Show a reveal-solution button | `TRUE` |
+
+**Tips:** Set `showTipButton = TRUE` to display a tip button. The
+behavior depends on the quiz type and mode:
+
+- **Single-choice (`singleQuestion` and `multiQuestions`):** Tips are
+  only shown if you provide a custom tip text as the 4th element of the
+  question list (`tip = "..."`). Questions without a tip simply don’t
+  show the button.
+- **Multiple-choice:** If no custom tip is provided, an automatic tip is
+  generated showing the number of correct answers (e.g. “Number of
+  correct answers: 3”). You can still override this with your own tip
+  text.
+- **Fill-in-the-blank (`fillBlanks`):** The tip shows all available
+  answer options (correct answers + distractors from `addOptions`).
+
+**Submit & retry (MC mode in `singleQuestion`):** After clicking Submit,
+a feedback message shows how many correct and wrong selections were
+made. The Submit button is disabled until the user changes their
+selection (adds or removes an option), then it can be clicked again.
+This allows iterative learning — adjust your answer and retry without
+reloading the page.
+
+**Shuffling:** Set `shuffle = TRUE` to randomize order:
+
+- **`singleQuestion`:** The answer options are displayed in a random
+  order each time the widget is rendered (e.g. when the page is loaded
+  or refreshed).
+- **`multiQuestions`:** The question order is randomized on each render,
+  and also each time the user clicks “Try again” on the results page.
+
+### Layout
+
+| Parameter | Description                                     | Default   |
+|:----------|:------------------------------------------------|:----------|
+| `width`   | Widget width (CSS value)                        | `"100%"`  |
+| `height`  | Widget height (CSS value)                       | `"500px"` |
+| `scroll`  | Fixed height with scrollbar (useful for slides) | `FALSE`   |
+| `center`  | Center the widget horizontally                  | `TRUE`    |
+
+### Design
+
+All visual aspects are customizable — colors, fonts, sizes. Common
+parameters include:
+
+| Parameter | Description | Default |
+|:---|:---|:---|
+| `fontFamily` | Font stack | `"'Helvetica Neue', ..."` |
+| `fontSize` | Base font size in px | `16` |
+| `titleCol` / `titleBg` | Title text & background color | `"#FFF"` / `"#5F5F5F"` |
+| `questionCol` / `questionBg` | Question (or description in fillBlanks) text & background color. Also serves as feedback area (green/red). | varies |
+
+See the function documentation
+([`?singleQuestion`](https://saskiaotto.github.io/rquiz/reference/singleQuestion.md),
+[`?multiQuestions`](https://saskiaotto.github.io/rquiz/reference/multiQuestions.md),
+[`?fillBlanks`](https://saskiaotto.github.io/rquiz/reference/fillBlanks.md))
+for the full list of design parameters.
+
+## Reusable Themes
+
+If you use multiple quizzes in the same document and want a consistent
+look, create a reusable theme with
+[`rquizTheme()`](https://saskiaotto.github.io/rquiz/reference/rquizTheme.md)
+instead of repeating color settings:
+
+``` r
+
+# Define a dark theme once
+dark <- rquizTheme(
+  fontFamily = "Georgia, serif",
+  fontSize = 18,
+  titleCol = "#E0E0E0", titleBg = "#1A1A2E",
+  questionCol = "#FFFFFF", questionBg = "#16213E",
+  mainCol = "#E0E0E0", mainBg = "#1A1B2E",
+  optionBg = "#252540",
+  navButtonCol = "#FFFFFF", navButtonBg = "#E94560",
+  tipButtonCol = "#E0E0E0", tipButtonBg = "#2C2C3E",
+  solutionButtonCol = "#E0E0E0", solutionButtonBg = "#2C2C3E"
+)
+
+# Apply to any quiz - all share the same design:
+singleQuestion(x = myQuestionSC, theme = dark, title = "Quiz 1")
+multiQuestions(x = scienceQuiz, theme = dark, title = "Quiz 2")
+fillBlanks(x = rQuiz, theme = dark, title = "Quiz 3")
+```
+
+The theme provides defaults that are overridden by any explicitly passed
+arguments:
+
+``` r
+
+# Use the dark theme but override the title background:
+singleQuestion(x = myQuestionSC, theme = dark, title = "Quiz 1", 
+  titleBg = "#FF0000")
+```
+
+See
+[`?rquizTheme`](https://saskiaotto.github.io/rquiz/reference/rquizTheme.md)
+for all available theme parameters, including quiz-specific ones like
+`optionLabelBg` (singleQuestion), `navButtonBg` (multiQuestions), or
+`descriptFontSize` (fillBlanks).
+
+## Formatting Text with HTML
+
+Since quiz content is rendered as HTML, you can use HTML tags to format
+text within questions, options, tips, and cloze text. Standard Markdown
+formatting (`*italic*`, `**bold**`) does **not** work inside quiz
+strings — use HTML tags instead.
+
+### Italic and bold text
+
+Use `<em>` for italics (e.g. species names) and `<strong>` for bold:
+
+``` r
+
+list(
+  question = "What is the scientific name of the blue whale?",
+  options = c(
+    "<em>Balaenoptera musculus</em>",
+    "<em>Megaptera novaeangliae</em>",
+    "<em>Physeter macrocephalus</em>"
+  ),
+  answer = 1
+)
+```
+
+### Inline code
+
+Use `<code>` for inline code formatting:
+
+``` r
+
+list(
+  question = "What does the pipe operator <code>|></code> do in R?",
+  options = c(
+    "It performs logical OR operations",
+    "It passes the left side as the first argument to the right side",
+    "It creates a new variable"
+  ),
+  answer = 2
+)
+```
+
+### Colored text
+
+Use `<span>` with inline CSS for colored or styled text:
+
+``` r
+
+list(
+  question = "Which <span style='color: #E74C3C;'>color</span> does litmus paper turn in an acidic solution?",
+  options = c("Blue", "Red", "Green", "Yellow"),
+  answer = 2
+)
+```
+
+### Code formatting in fill-in-the-blank quizzes
+
+Use `<pre>` tags for monospace code blocks in
+[`fillBlanks()`](https://saskiaotto.github.io/rquiz/reference/fillBlanks.md).
+Inside `<pre>`, line breaks require the `<br>` tag (normal line breaks
+are ignored):
+
+``` r
+
+list(
+  cloze = "<pre>library($$!ggplot2!$$)<br>
+ggplot(data = iris) +<br>
+  $$!geom_point!$$(aes(x = Sepal.Length, y = Sepal.Width))</pre>",
+  addOptions = c("geom_line", "dplyr")
+)
+```
+
+## Multilingual Support
+
+Set `language` to change all UI text (buttons, messages) automatically:
+
+``` r
+
+# German
+singleQuestion(x = myQuestionSC, language = "de")
+
+# French
+multiQuestions(x = sportQuiz, language = "fr")
+
+# Spanish
+fillBlanks(x = rQuiz, language = "es")
+```
+
+Currently supported: English (`"en"`), German (`"de"`), French (`"fr"`),
+Spanish (`"es"`). To request additional languages, please open an issue
+on [GitHub](https://github.com/saskiaotto/rquiz/issues).
+
+## Using in Quarto / R Markdown
+
+Simply include quiz code in a code chunk. The widget renders as part of
+the HTML output:
+
+```` markdown
+```{r}
+library(rquiz)
+singleQuestion(
+  x = list(
+    question = "What is 2+2?",
+    options = c("3", "4", "5"),
+    answer = 2
+  ),
+  title = "Math"
+)
+```
+````
+
+For **HTML slide presentations** (e.g. revealJS, xaringan), use
+`scroll = TRUE` to add a scrollbar when the quiz exceeds the available
+slide space:
+
+``` r
+
+singleQuestion(x = myQuestionSC, scroll = TRUE, height = "400px")
+```
+
+## Using in Shiny
+
+Use the provided output/render functions:
+
+``` r
+
+library(shiny)
+library(rquiz)
+
+ui <- fluidPage(
+  h2("My Quiz App"),
+  singleQuestionOutput("quiz")
+)
+
+server <- function(input, output) {
+  output$quiz <- renderSingleQuestion({
+    singleQuestion(
+      x = list(
+        question = "What is 2+2?",
+        options = c("3", "4", "5"),
+        answer = 2
+      )
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+Each quiz type has its own pair:
+[`singleQuestionOutput()`](https://saskiaotto.github.io/rquiz/reference/singleQuestion-shiny.md)
+/
+[`renderSingleQuestion()`](https://saskiaotto.github.io/rquiz/reference/singleQuestion-shiny.md),
+[`multiQuestionsOutput()`](https://saskiaotto.github.io/rquiz/reference/multiQuestions-shiny.md)
+/
+[`renderMultiQuestions()`](https://saskiaotto.github.io/rquiz/reference/multiQuestions-shiny.md),
+[`fillBlanksOutput()`](https://saskiaotto.github.io/rquiz/reference/fillBlanks-shiny.md)
+/
+[`renderFillBlanks()`](https://saskiaotto.github.io/rquiz/reference/fillBlanks-shiny.md).
+
+## Next Steps
+
+- Browse the
+  [Gallery](https://saskiaotto.github.io/rquiz/articles/gallery.md) for
+  interactive examples with different configurations
+- Check the [Function
+  Reference](https://saskiaotto.github.io/rquiz/reference/index.md) for
+  all available parameters

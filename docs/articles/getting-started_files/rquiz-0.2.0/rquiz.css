@@ -1,0 +1,544 @@
+/* ====================================================================
+ ========================= SHARED: Accessibility ======================
+ ====================================================================== */
+
+/* Focus outline for keyboard navigation */
+.sqq-option-row:focus,
+.sqq-mc-btn:focus,
+.mqq-btn:focus,
+.mqq-option-block:focus,
+.fgq-button:focus,
+.fgq-target:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Only show focus outline for keyboard users, not mouse clicks */
+.sqq-option-row:focus:not(:focus-visible),
+.sqq-mc-btn:focus:not(:focus-visible),
+.mqq-btn:focus:not(:focus-visible),
+.mqq-option-block:focus:not(:focus-visible),
+.fgq-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ====================================================================
+ ========================= STYLE: singleQuestion Quiz =================
+ ====================================================================== */
+
+/* General stuff */
+.sqq-clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*  ------- Main widget container -------- */
+
+.sqq-quiz {
+  width: 100%!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  border-radius: 5px !important;
+  background-color: #F7F7F7!important;
+  overflow: hidden;
+}
+
+/* ------------ Question div ------------- */
+
+.sqq-question {
+  width: 100% !important;
+  background-color: #5F5F5F;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.sqq-question-p  {
+  font-weight: bold !important;
+  color: #FFFFFF;
+  margin: 0px !important;
+}
+
+/* ------------ Answer options container ------------- */
+
+.sqq-options-container {
+  min-height: 120px;
+  padding: 10px 15px !important;
+  box-sizing: border-box !important;
+}
+
+.sqq-option-row {
+  background-color: #ECECEC !important;
+  cursor: pointer !important;
+  border: none !important;
+  border-radius: 5px !important;
+  margin-bottom: 8px !important;
+  display: flex;
+}
+
+.sqq-option-row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.sqq-option-cols {
+  flex: 1;
+  position: relative;
+}
+
+.sqq-option-col1 {
+  width: 90px;
+  flex: 0 0 90px;
+}
+
+/* ------------ Individual options ------------- */
+
+.sqq-div-letter {
+  background-color: #3498db;
+  text-align: center!important;
+  border-radius: 4px !important;
+  margin: 0 20px !important;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+p.sqq-p-lett {
+  text-align: center;
+  color: white !important;
+  font-weight: 600 !important;
+  margin: 0px !important;
+}
+
+div.sqq-div-text {
+  padding-right: 20px;
+}
+
+.sqq-p-text {
+  color: #1C1C1C !important;
+  margin: 0px !important;
+}
+
+/* --------- Multiple-Choice styles ----------*/
+
+.sqq-option-row.sqq-selected {
+  background-color: #D4D4D4 !important;
+}
+
+.sqq-option-row.sqq-selected .sqq-div-letter {
+  background-color: #2677B6 !important;
+}
+
+.sqq-mc-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: left;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.sqq-mc-btn {
+  padding: 10px 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid #BBBBBB !important;
+  border-radius: .25rem !important;
+  text-shadow: none;
+}
+
+.sqq-mc-btn:hover {
+  filter: brightness(0.8);
+}
+
+.sqq-mc-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  filter: none;
+}
+
+/* Tip section for singleQuestion MC */
+.sqq-tips {
+  display: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  border-radius: 5px;
+}
+
+.sqq-tips p {
+  margin: 5px 0;
+}
+
+/* Solution section for singleQuestion MC */
+.sqq-solution {
+  display: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  border-radius: 5px;
+}
+
+.sqq-solution p {
+  margin: 5px 0;
+}
+
+/* --------- Responsive Design --------------*/
+
+@media screen and (max-width: 400px) {
+  .sqq-question-p {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+}
+
+
+/* ====================================================================
+ ========================= STYLE: multiQuestion Quiz ==================
+ ====================================================================== */
+
+/* General stuff */
+.mqq-clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*  ------- Main widget container -------- */
+
+.mqq-quiz {
+  margin: 0 !important;
+  width: 100%!important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  overflow: hidden;
+  border-radius: 5px !important;
+}
+
+/*  ------- The header --------  */
+
+.mqq-header {
+  width: 100% !important;
+  padding: 15px !important;
+  display: flex !important;
+}
+
+.mqq-left-title {
+  flex: 1 !important;
+  position: relative !important;
+  font-weight: bold !important;
+}
+
+.mqq-right-title {
+  text-align: right;
+}
+
+/* Responsive design for header */
+
+@media (max-width: 500px) {
+  .mqq-header {
+    flex-direction: column;
+  }
+  .mqq-right-title {
+    flex: 1 !important;
+    width: 100% !important;
+    text-align: left;
+    margin-top: 0.5em;
+  }
+}
+
+/* ----- The quiz content containers ------ */
+
+.mqq-content {
+  margin-top: 5px !important;
+}
+
+.mqq-container-fluid {
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.mqq-row {
+  margin-right: -15px !important;
+  margin-left: -15px !important;
+}
+
+.mqq-col {
+  position: relative !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+
+.mqq-quiz-body {
+  margin-top: 15px !important;
+  padding-bottom: 20px !important;
+  border-radius: 0 0 5px 5px !important;
+}
+
+/*  -------- The form with the actual question and answer options ------- */
+
+.mqq-form-group {
+  padding: 0 !important;
+  border: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+h4.mqq-question-header {
+  font-weight: 500 !important;
+  margin-bottom: .5rem !important;
+  margin-top: 0 !important;
+}
+
+.mqq-option-block-container {
+  margin-top: 10px !important;
+  width: 90%;
+}
+
+.mqq-option-block {
+  padding: 10px !important;
+  margin-bottom: 2px !important;
+  position: relative !important;
+  display: block !important;
+}
+
+.mqq-form-check-label {
+  display: inline-block !important;
+  margin-bottom: 0 !important;
+  cursor: pointer !important;
+}
+
+.mqq-quiz label.mqq-form-check-label input.mqq-form-check-input {
+  padding: 0 !important;
+  position: absolute !important;
+}
+
+.mqq-quiz span.optionval {
+  font-weight: normal !important;
+  display: block;
+}
+
+/* ------The buttons section --------- */
+
+.mqq-button-container {
+  position: relative;
+  width: 90%;
+  padding: 10px 0;
+}
+
+button.mqq-btn {
+  display: inline-block !important;
+  font-weight: 400 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  border: 1px solid transparent !important;
+  border-radius: .25rem !important;
+  text-shadow: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+}
+
+.mqq-btn.disabled, .mqq-btn:disabled {
+  opacity: .65 !important;
+}
+
+.mqq-btn:not(:disabled):not(.disabled) {
+  cursor: pointer !important;
+}
+
+.mqq-btn:hover {
+  filter: brightness(0.85);
+}
+
+button.mqq-btn.mqq-showsolution:hover {
+  filter: brightness(0.8);
+}
+
+.mqq-previous {
+  margin-right: 5px !important;
+  margin-top: 10px !important;
+}
+
+.mqq-next {
+  margin-left: 5px !important;
+  margin-top: 10px !important;
+}
+
+.mqq-quiz button, .mqq-quiz select {
+  text-transform: none !important;
+}
+
+.mqq-quiz button, .mqq-quiz input {
+  overflow: visible !important;
+}
+
+.mqq-timer {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  border: none;
+  margin-top: 5px;
+  background: none;
+}
+
+/* --------- The result page ------------- */
+
+.mqq-quiz .result h3.mqq-res-header {
+  font-weight: 700 !important;
+  margin-top: 0;
+  border-bottom: 1px solid #ccc !important;
+}
+
+.mqq-last-row {
+  border-bottom: 1px solid #ccc !important;
+}
+
+.mqq-result-question {
+  font-weight: bold !important;
+}
+
+.mqq-result-answer,
+.mqq-last-row {
+  font-weight: normal;
+}
+
+.mqq-result-answer span {
+  font-weight: normal !important;
+}
+
+.mqq-wrong {
+  color: #FF0000 !important;
+  font-weight: bold;
+}
+
+.mqq-correct {
+  color: green !important;
+  font-weight: bold;
+}
+
+
+/* ====================================================================
+ ========================= STYLE: Fill-the-Gap Quiz ===================
+ ====================================================================== */
+
+/* General stuff */
+.fgq-clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*  ------- Main quiz container -------- */
+
+.fgq-quiz {
+  border-radius: 5px !important;
+  background-color: #F7F7F7!important;
+  overflow: hidden;
+}
+
+/* ------------ Header div ------------- */
+
+.fgq-quiz .fgq-header {
+  display: block;
+  min-height: 10px;
+}
+
+.fgq-quiz p.fgq-title {
+  font-weight: bold;
+  display: block;
+  padding: 0 !important;
+}
+
+.fgq-quiz p.fgq-description {
+  display: block;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/*  ------- Main div -------- */
+
+.fgq-quiz .fgq-main {
+  border-radius: 0 0 5px 5px !important;
+  background-color: #F7F7F7!important;
+  padding: 5px 20px;
+}
+
+/* ------------ Cloze div ------------- */
+
+.fgq-quiz .fgq-cloze {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.fgq-quiz .fgq-cloze pre {
+  font-size: 1em;
+}
+
+.fgq-quiz input[type="text"].fgq-target {
+  padding: 6px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+/* ------------ Buttons ------------- */
+
+.fgq-quiz .fgq-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.fgq-quiz .fgq-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  border: 1px solid #BBBBBB !important;
+  border-radius: .25rem !important;
+  text-shadow: none;
+}
+
+.fgq-quiz .fgq-button-submit:hover {
+  filter: brightness(0.8);
+}
+
+.fgq-quiz .fgq-button-tip:hover,
+.fgq-quiz .fgq-button-solution:hover {
+  background-color: #ADADAD !important;
+}
+
+/* ------------ Tip div ------------- */
+
+.fgq-quiz .fgq-tips {
+  display: none;
+  padding: 0 10px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.fgq-quiz span.fgq-option {
+  cursor: pointer;
+  display: inline-block;
+  background-color: white;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

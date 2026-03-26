@@ -1,0 +1,213 @@
+---
+title: "Data Science in R Quiz"
+subtitle: "rquiz Demo - Quarto HTML Document"
+author: "Saskia Otto"
+date: today
+format:
+  html:
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-summary: "Show code"
+    theme: cosmo
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+echo: true
+code-fold: true
+---
+
+## About this demo
+
+- This document demonstrates the three quiz functions from the **rquiz** package — `singleQuestion()`, `multiQuestions()`, and `fillBlanks()` — with quizzes about Data Science in R. 
+- Each quiz type is shown twice: first with default settings, then with a custom Quarto-inspired theme applied via `rquizTheme()`:
+
+```{r}
+#| label: setup
+#| echo: true
+library(rquiz)
+
+### Quarto-inspired theme: clean, light, modern
+quartoTheme <- rquizTheme(
+  # Define font
+  fontFamily = "'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontSize = 16,
+  # Define title
+  titleCol = "#F8F9FB",
+  titleBg = "#81A9D7",
+  # Define question area (=description in fill-the-blanks quiz)
+  questionCol = "#F8F9FB",
+  questionBg = "#353A40",
+  # Define main quiz body (with answer options/cloze text)
+  mainCol = "#353A40",
+  mainBg = "#F8F9FB",
+  optionBg = "#F1F5F9",
+  optionLabelBg = "#353A40",
+  # Define buttons
+  navButtonCol = "#F8F9FB",
+  navButtonBg = "#4E6F96",
+  tipButtonCol = "#353A40",
+  tipButtonBg = "#F8F9FB",
+  solutionButtonCol = "#353A40",
+  solutionButtonBg = "#F8F9FB",
+  # Define tip and solution text areas
+  tipAreaCol = "#353A40",
+  tipAreaBg = "#F1F5F9",
+  tipAreaBorder = "#353A40",
+  solutionAreaCol = "#353A40",
+  solutionAreaBg = "#F1F5F9",
+  solutionAreaBorder = "#353A40"
+)
+
+### You can modify the theme for a specific quiz type
+# E.g., do not colour the question section dark in the multiQuestion quizzes
+quartoThemeMQQ <- quartoTheme
+quartoThemeMQQ$questionCol <- "#353A40"
+quartoThemeMQQ$questionBg <- "#F8F9FB"
+```
+
+::: {.callout-tip}
+### Tips
+- To style text within questions (e.g. function names as code), use HTML tags such as `<em>` (italics), `<strong>` (bold), `<code>` (inline code), or `<span>` with inline CSS directly in the question or answer option strings.
+- For code-based fill-in-the-blank quizzes, use `<pre>` tags for monospace formatting and `<br>` for line breaks.
+:::
+
+
+## Single Question | `singleQuestion()`
+### Default settings
+
+This multiple-choice question uses the default rquiz styling. Select all correct answers and click **Submit**. Once you change your answer options, you can re-submit.
+
+```{r}
+#| echo: true
+### Example of a multiple-choice question here
+myQuestion <- list(
+    question = "Which of the following are primitive data types in R?",
+    options = c("numeric", "character", "data.frame", "logical", "ggplot", "integer"),
+    answer = c(1, 2, 4, 6),
+    tip = "Primitive types are the basic building blocks, not complex objects."
+  )
+# checkSingleQuestion(myQuestion)
+
+singleQuestion(
+  x = myQuestion,
+  title = "R Data Types",
+  showTipButton = TRUE
+)
+```
+
+### Quarto theme
+
+The same quiz with a clean Quarto-inspired theme applied via `rquizTheme()`.
+
+```{r}
+#| echo: true
+singleQuestion(
+  x = myQuestion,
+  title = "R Data Types",
+  showTipButton = TRUE,
+  theme = quartoTheme
+)
+```
+
+
+## Multi-Question Quiz | `multiQuestions()`
+### Default settings
+
+Navigate through the questions with **Previous**/**Next**. Your score is shown at the end and questions are shuffled each time you try the quiz again. Note: To style text within questions (e.g. species names in italics), use HTML tags such as `<em>` (italics), `<strong>` (bold), `<code>` (inline code) or `<span>` with inline CSS directly in the question or answer option strings.
+
+```{r}
+#| echo: true
+### Example of single-choice questions only here
+myQuestionList <- list(
+    q1 = list(
+      question = "Which function reads a CSV file into R?",
+      options = c("read.csv()", "load.csv()",
+        "import.csv()", "open.csv()"),
+      answer = 1,
+      tip = "It is part of base R."
+    ),
+    q2 = list(
+      question = "Which package is used for data visualization
+        with a grammar of graphics?",
+      options = c("plotly", "lattice", "ggplot2", "base"),
+      answer = 3,
+      tip = "Created by Hadley Wickham."
+    ),
+    q3 = list(
+      question = "What does the pipe operator <code>|></code> do in R?",
+      options = c(
+        "It performs logical OR operations",
+        "It passes the result of the left side as the first argument to the right side",
+        "It creates a new variable",
+        "It filters data"
+      ),
+      answer = 2
+    )
+  )
+# checkMultiQuestions(myQuestionList)
+
+multiQuestions(
+  x = myQuestionList,
+  title = "R Basics Quiz",
+  shuffle = TRUE,
+  showTipButton = TRUE
+)
+```
+
+### Quarto theme
+
+The same multi-question quiz with the Quarto-inspired theme.
+
+```{r}
+#| echo: true
+multiQuestions(
+  x = myQuestionList,
+  title = "R Basics Quiz",
+  shuffle = TRUE,
+  showTipButton = TRUE,
+  theme = quartoThemeMQQ
+)
+```
+
+
+## Fill in the Blanks | `fillBlanks()` 
+### Default settings
+
+Type the missing R code into the blank fields. Click **Submit** to check your answers. If your cloze text is programming code, use a `<pre>` HTML tag for monospace code blocks. Inside `<pre>`, line breaks require the `<br>` tag (normal line breaks are ignored):
+
+```{r}
+#| echo: true
+myTxt <- list(
+    cloze = "<pre>library($$!ggplot2!$$)<br>
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +<br>
+  $$!geom_point!$$(aes(color = Species)) +<br>
+  $$!theme_minimal!$$()</pre>",
+    addOptions = c("geom_line", "theme_classic", "dplyr", "geom_bar")
+  )
+# checkFillBlanks(myTxt)
+
+fillBlanks(
+  x = myTxt,
+  title = "ggplot2 Code",
+  description = "Fill in the missing R code to create a scatter plot with a simple design.",
+  showTipButton = TRUE
+)
+```
+
+### Quarto theme
+
+The same fill-in-the-blank quiz with the Quarto-inspired theme.
+
+```{r}
+#| echo: true
+fillBlanks(
+  x = myTxt,
+  title = "ggplot2 Code",
+  description = "Fill in the missing R code to create a scatter plot with a simple design.",
+  showTipButton = TRUE,
+  clozeHeight = "250px",
+  theme = quartoTheme
+)
+```
+

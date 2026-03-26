@@ -1,0 +1,283 @@
+---
+title: "Zheng Yi Sao Quiz"
+subtitle: "rquiz Demo - RevealJS Presentation"
+author: "Saskia Otto"
+date: today
+format:
+  revealjs:
+    theme: dark
+    transition: slide
+    slide-number: true
+    smaller: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## About this demo
+
+- This presentation demonstrates the three quiz functions from the **rquiz** package — `singleQuestion()`, `multiQuestions()`, and `fillBlanks()` — with quizzes about Zheng Yi Sao. If you don't know who that is, give the quizzes a try.. 😀
+- Each quiz type is shown twice: first with default settings, then with a custom dark revealjs theme applied via `rquizTheme()`.
+
+```{r}
+#| label: setup
+#| include: true
+library(rquiz)
+
+### RevealJS-inspired theme: dark background, warm yellow/pink accents
+revealjsTheme <- rquizTheme(
+  # Define font
+  fontFamily = "'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  questionFontSize = 18,
+  # Define title
+  titleCol = "#EFDA0E",
+  titleBg = "#221C3C",
+  # Define question area (=description in fill-the-blanks quiz)
+  questionCol = "#F8FAFC",
+  questionBg = "#2D2B55",  
+  # Define main quiz body (with answer options/cloze text)
+  mainCol = "#F8FAFC",
+  mainBg = "#221C3C",
+  optionBg = "#2D2B55",
+  optionLabelBg = "#E91E63",
+  # Define buttons
+  navButtonCol = "#F8FAFC",
+  navButtonBg = "#E91E63",
+  tipButtonCol = "#4C5567",
+  tipButtonBg = "#EFDA0E",
+  solutionButtonCol = "#4C5567",
+  solutionButtonBg = "#E3E8EF",
+  # Define tip and solution text areas
+  tipAreaCol = "#4C5567",
+  tipAreaBg = "#E3E8EF",
+  tipAreaBorder = "#EFDA0E",
+  solutionAreaCol = "#4C5567",
+  solutionAreaBg = "#E3E8EF",
+  solutionAreaBorder = "#4C5567"
+)
+
+
+### You can modify the theme for a specific quiz type
+# E.g., keep the default question font size in the multiQuestion quizzes
+revealjsThemeMQQ <- revealjsTheme
+revealjsThemeMQQ$questionFontSize <- NULL # remove from theme (or overwrite with 16)
+```
+
+
+:::{.callout-tip}
+### Tipps
+- For longer quizzes in revealjs, you can add `{.scrollable}` to individual slides, enable scrolling globally in the YAML header, or set `scroll = TRUE` with a fixed quiz height.
+- To style text within questions (e.g. names in italics), use HTML tags such as `<em>` (italics), `<strong>` (bold), `<code>` (inline code) or `<span>` with inline CSS directly in the question or answer option strings.
+:::
+
+
+## Single Question {.scrollable}
+### `singleQuestion()` | Default settings
+
+This single-choice question uses the default rquiz styling. The answer options are shuffled each time when rendering this document. Scroll down to see more. 
+```{r}
+#| echo: false
+### Example of a single-choice question here
+myQuestion <- list(
+    question = "Who was <em>Zheng Yi Sao</em>?",
+    options = c(
+    "The most successful pirate in history",
+    "A Qing dynasty empress who ruled China for 50 years",
+    "The inventor of paper money in imperial China",
+    "A fictional character in a modern Netflix manga series",
+    "A Nobel Prize–winning physicist known for quantum theory",
+    "The founder of the first global shipping corporation",
+    "A legendary martial artist featured in wuxia literature",
+    "An AI system developed to predict ocean currents"
+    ),
+    answer = 1,
+    tip = "Think of famous historical figures like Blackbeard or Captain Kidd—she surpassed most men in that world, yet remains surprisingly little known."
+  )
+checkSingleQuestion(myQuestion)
+
+singleQuestion(
+  x = myQuestion,
+  title = "A Woman You've Probably Never Heard Of",
+  shuffle = TRUE,
+  showTipButton = TRUE,
+  width = "60%",
+  center = TRUE
+)
+```
+
+## Single Question
+### `singleQuestion()` | Revealjs theme
+
+The same quiz with a dark revealjs theme (gold/pink accents) applied via `rquizTheme()` and a fixed height and scrolling set to true inside.
+
+```{r}
+#| echo: false
+singleQuestion(
+  x = myQuestion,
+  title = "A Woman You've Probably Never Heard Of",
+  showTipButton = TRUE,
+  theme = revealjsTheme,
+  scroll = TRUE,
+  height = "400px",
+  width = "60%",
+  center = TRUE
+)
+```
+
+
+## Multi-Question Quiz {.scrollable}
+### `multiQuestions()` | Default settings
+
+Navigate through the questions with **Previous**/**Next**. Your score is shown at the end. 
+
+```{r}
+#| echo: false
+### Example of mixed single-and multiple-choice questions here
+myQuestionList <- list(
+  q1 = list(
+    question = "Which of the following are historically accurate about Zheng Yi Sao?",
+    options = c(
+      "She commanded a confederation of pirate fleets",
+      "She enforced a strict code of conduct",
+      "She inherited power after her husband's death",
+      "She relied on steam-powered naval technology"
+    ),
+    answer = c(1,2,3),
+    tip = "Her leadership combined inheritance, organization, and strict internal governance."
+  ),
+  q2 = list(
+    question = "At its peak, how large was her fleet?",
+    options = c(
+      "Fewer than 20 ships",
+      "Around 100 ships",
+      "Several hundred ships",
+      "More than 5,000 ships"
+    ),
+    answer = 3,
+    tip = "Estimates vary, but her fleet was vastly larger than that of most well-known figures in similar roles."
+  ),
+  q3 = list(
+    question = "What was Zheng Yi Sao's fleet called?",
+    options = c("The Black Fleet", "The Red Flag Fleet",
+      "The Dragon Armada", "The Jade Squadron"),
+    answer = 2,
+    tip = "The name refers to the color of their sails."
+  ),
+  q4 = list(
+    question = "How many pirates did Zheng Yi Sao command
+        at the height of her power?",
+    options = c("About 5,000", "About 20,000",
+      "About 50,000", "About 70,000"),
+    answer = 4,
+    tip = "More than most navies of the time."
+  ),
+  q5 = list(
+    question = "Which of the following rules were part of Zheng Yi Sao's code of conduct?",
+    options = c(
+      "Loot had to be registered and distributed according to fixed rules",
+      "Unauthorized violence against captives was punishable",
+      "Crew members could leave the fleet at any time without consequences",
+      "Strict discipline was enforced with severe penalties"
+    ),
+    answer = c(1,2,4),
+    tip = "Her success relied heavily on strict rules governing behavior, discipline, and distribution of resources."
+  ),
+  q6 = list(
+    question = "How did Zheng Yi Sao's career ultimately end?",
+    options = c(
+      "She was executed by imperial authorities",
+      "She died in battle",
+      "She negotiated amnesty and retired",
+      "She was exiled to Europe"
+    ),
+    answer = 3,
+    tip = "Her story is unusual because it ended on her own terms rather than through defeat."
+  ),
+  q7 = list(
+    question = "What happened to Zheng Yi Sao after
+        she retired from piracy?",
+    options = c("She was executed",
+      "She fled to Japan",
+      "She opened a gambling house",
+      "She became a naval admiral"),
+    answer = 3
+  )
+)
+# checkMultiQuestions(myQuestionList)
+
+multiQuestions(
+  x = myQuestionList,
+  title = "The Pirate Queen",
+  shuffle = FALSE,
+  showTipButton = TRUE
+)
+```
+
+<br>
+
+::: aside
+The function will automatically detect multiple-choice questions in your question list and render all questions using checkboxes instead of radio buttons.
+:::
+
+
+## Multi-Question Quiz  {.scrollable}
+### `multiQuestions()` | Revealjs theme 
+
+The same multi-question quiz with the dark revealjs theme.
+
+```{r}
+#| echo: false
+multiQuestions(
+  x = myQuestionList,
+  title = "The Pirate Queen",
+  shuffle = TRUE,
+  showTipButton = TRUE,
+  theme = revealjsThemeMQQ
+)
+```
+
+
+## Fill in the Blanks
+### `fillBlanks()` | Default settings
+
+Type the missing words into the blank fields. Click **Submit** to check your answers.
+
+```{r}
+#| echo: false
+myTxt <- list(
+    cloze = "Zheng Yi Sao, born $$!Shi Xianggu!$$, rose to power
+      after the death of her husband $$!Zheng Yi!$$. She commanded
+      the $$!Red Flag Fleet!$$ and enforced a strict code of laws
+      among her pirates.",
+    addOptions = c("Ching Shih", "Zhang Bao", "Black Pearl Fleet",
+      "Golden Dragon Fleet")
+  )
+# checkFillBlanks(myTxt)
+
+fillBlanks(
+  x = myTxt,
+  title = "Pirate Queen Biography",
+  description = "Complete the text about the most powerful pirate in history.",
+  showTipButton = TRUE
+)
+```
+
+
+## Fill in the Blanks
+### `fillBlanks()` | Revealjs theme 
+
+The same fill-in-the-blank quiz with the dark revealjs theme.
+
+```{r}
+#| echo: false
+fillBlanks(
+  x = myTxt,
+  title = "Pirate Queen Biography",
+  description = "Complete the text about the most powerful pirate in history.",
+  showTipButton = TRUE,
+  clozeHeight = "200px",
+  theme = revealjsTheme
+)
+```
+
+
