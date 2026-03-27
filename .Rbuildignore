@@ -18,3 +18,4 @@
 ^vignettes/\.quarto$
 ^inst/examples/.*_files$
 ^inst/examples/.*\.html$
+^CRAN-SUBMISSION$
