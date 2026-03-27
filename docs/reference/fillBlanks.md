@@ -78,7 +78,7 @@ fillBlanks(
 
   character; a short description below the title. If set to `NULL`
   (default), a language-specific default text is used (e.g. "Fill in the
-  blanks." for English, "Fuelle die Luecken." for German). Set to `""`
+  blanks." for English, "Fülle die Lücken." for German). Set to `""`
   (empty string) to hide the description entirely.
 
 - language:
@@ -305,9 +305,9 @@ or italic or a specific color, use HTML tags with inline CSS style:
 style='color:red'\>environment\</span\> for \$\$!statistical
 computing!\$\$ and graphics.")*
 
-Any white space in the string will be correctly displayed in the cloze
-text, but not a tab stop or line break. To display a line break in the
-quiz use the **\<br\>** tag.
+Normal text wraps automatically. For monospace code blocks, use
+**\<pre\>** tags — inside `<pre>`, line breaks require the **\<br\>**
+tag (normal line breaks are ignored).
 
 ## See also
 

@@ -226,8 +226,9 @@ inline CSS style:
 \emph{x = list(cloze = "R is a $$!programming!$$ <b>language</b> and <em>free</em> software <span
 style='color:red'>environment</span> for $$!statistical computing!$$ and graphics.")}
 
-Any white space in the string will be correctly displayed in the cloze text, but not a tab stop
-or line break. To display a line break in the quiz use the \strong{<br>} tag.
+Normal text wraps automatically. For monospace code blocks, use \strong{<pre>}
+tags — inside \code{<pre>}, line breaks require the \strong{<br>} tag
+(normal line breaks are ignored).
 }
 \examples{
 \donttest{

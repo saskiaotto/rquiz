@@ -125,9 +125,8 @@ div.sqq-div-text {
 
 /* --------- Multiple-Choice style ----------*/
 
-.sqq-option-row.sqq-selected {
-  background-color: #D4D4D4 !important;
-}
+/* Selected row background is set via JS inline styles
+   using darkenColor(optionBg, 0.3) */
 
 /* Letter color for selected rows is set via JS inline styles
    using optionLabelHoverBg (derived from optionLabelBg parameter) */

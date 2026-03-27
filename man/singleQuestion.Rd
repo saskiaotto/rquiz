@@ -54,9 +54,13 @@ readability):
      answer options (multiple-choice). The quiz mode is auto-detected from
      the length of this field.
    \item \code{$tip} (optional) A string providing a custom tip text, shown
-     when \code{showTipButton = TRUE}. If omitted, the number of correct
-     answers is shown as the default tip.
-}}
+     when \code{showTipButton = TRUE}. In multiple-choice mode, if omitted,
+     the number of correct answers is shown as the default tip. In
+     single-choice mode, the tip button only appears if a custom tip is
+     provided.
+}
+Use \code{\link{checkSingleQuestion}} to validate the input before
+passing it.}
 
 \item{title}{character; the title text. If set to \code{NULL} (default)
 the header box will not be shown.}
@@ -64,8 +68,8 @@ the header box will not be shown.}
 \item{language}{character; the language of the quiz interface. Sets button
 labels, feedback messages and other UI text automatically. Currently
 supported: \code{"en"} (English, default), \code{"de"} (German),
-\code{"fr"} (French), and \code{"es"} (Spanish). To request additional languages,
-please open an issue on GitHub.}
+\code{"fr"} (French), and \code{"es"} (Spanish). To request additional
+languages, please open an issue on GitHub.}
 
 \item{shuffle}{logical; if \code{TRUE}, the answer options are displayed in a
 random order each time the widget is rendered. The correct answer mapping
@@ -198,6 +202,13 @@ many correct and wrong selections were made. The Submit button is disabled
 after each attempt and re-enabled when the selection changes, allowing the
 user to adjust and retry. Optional Tip and Solution buttons provide
 additional help.
+
+
+\strong{Text formatting:} Since quiz content is rendered as HTML, you can
+use HTML tags in question and option strings: \code{<em>} for italics
+(e.g. species names), \code{<strong>} for bold, \code{<code>} for inline
+code, or \code{<span>} with inline CSS for colored text. Standard Markdown
+formatting does \emph{not} work inside quiz strings.
 }
 \examples{
 \donttest{

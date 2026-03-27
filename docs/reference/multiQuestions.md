@@ -147,7 +147,7 @@ multiQuestions(
 - questionFontSize:
 
   integer; the font size in pixels for the question text. The default is
-  `18`.
+  `16`.
 
 - titleAlign:
 
@@ -271,7 +271,14 @@ R Markdown/Quarto documents, Shiny applications, or the RStudio viewer.
 The quiz mode is auto-detected: if **any** question has multiple correct
 answers (`length(answer) > 1`), all questions use checkboxes
 (multiple-choice mode). Otherwise, radio buttons are used
-(single-choice).
+(single-choice). An optional tip button can provide hints per question
+(custom text or, in MC mode, the number of correct answers).
+
+**Text formatting:** Since quiz content is rendered as HTML, you can use
+HTML tags in question and option strings: `<em>` for italics (e.g.
+species names), `<strong>` for bold, `<code>` for inline code, or
+`<span>` with inline CSS for colored text. Standard Markdown formatting
+does *not* work inside quiz strings.
 
 ## See also
 

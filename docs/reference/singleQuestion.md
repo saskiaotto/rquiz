@@ -65,8 +65,14 @@ singleQuestion(
     auto-detected from the length of this field.
 
   - `$tip` (optional) A string providing a custom tip text, shown when
-    `showTipButton = TRUE`. If omitted, the number of correct answers is
-    shown as the default tip.
+    `showTipButton = TRUE`. In multiple-choice mode, if omitted, the
+    number of correct answers is shown as the default tip. In
+    single-choice mode, the tip button only appears if a custom tip is
+    provided.
+
+  Use
+  [`checkSingleQuestion`](https://saskiaotto.github.io/rquiz/reference/checkSingleQuestion.md)
+  to validate the input before passing it.
 
 - title:
 
@@ -272,6 +278,12 @@ many correct and wrong selections were made. The Submit button is
 disabled after each attempt and re-enabled when the selection changes,
 allowing the user to adjust and retry. Optional Tip and Solution buttons
 provide additional help.
+
+**Text formatting:** Since quiz content is rendered as HTML, you can use
+HTML tags in question and option strings: `<em>` for italics (e.g.
+species names), `<strong>` for bold, `<code>` for inline code, or
+`<span>` with inline CSS for colored text. Standard Markdown formatting
+does *not* work inside quiz strings.
 
 ## See also
 

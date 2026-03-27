@@ -9,6 +9,8 @@
 #' The quiz mode is auto-detected: if \strong{any} question has multiple
 #' correct answers (\code{length(answer) > 1}), all questions use checkboxes
 #' (multiple-choice mode). Otherwise, radio buttons are used (single-choice).
+#' An optional tip button can provide hints per question (custom text or,
+#' in MC mode, the number of correct answers).
 #'
 #' @param x A list of question lists. Each sub-list should contain:
 #'        \itemize{
@@ -27,8 +29,7 @@
 #'        labels, navigation text, result page text and other UI elements
 #'        automatically. Currently supported: \code{"en"} (English, default),
 #'        \code{"de"} (German), \code{"fr"} (French), and \code{"es"} (Spanish).
-#'        To request additional languages,
-#'        please open an issue on GitHub.
+#'        To request additional languages, please open an issue on GitHub.
 #' @param shuffle logical; if \code{TRUE}, the order of questions is randomized
 #'        each time the widget is rendered or the quiz is restarted with 'Try again'.
 #'        The default is \code{FALSE}.
@@ -61,7 +62,7 @@
 #' @param titleFontSize integer; the font size in pixels for the title.
 #'        The default is \code{20}.
 #' @param questionFontSize integer; the font size in pixels for the question text.
-#'        The default is \code{18}.
+#'        The default is \code{16}.
 #' @param titleAlign character; the alignment of the title text. One of \code{"left"}
 #'        (default), \code{"center"}, or \code{"right"}.
 #' @param titleCol character; the title text color as hex color or R color name.
@@ -108,6 +109,14 @@
 #'        areas on the results page. The default is \code{"#3498DB"}.
 #' @param theme an optional \code{\link{rquizTheme}} object. Theme values are
 #'        used as defaults and are overridden by any explicitly passed arguments.
+#'
+#' @details
+#' \strong{Text formatting:} Since quiz content is rendered as HTML, you can
+#' use HTML tags in question and option strings: \code{<em>} for italics
+#' (e.g. species names), \code{<strong>} for bold, \code{<code>} for inline
+#' code, or \code{<span>} with inline CSS for colored text. Standard Markdown
+#' formatting does \emph{not} work inside quiz strings.
+#'
 #'
 #' @return An HTML widget object of class \code{multiQuestions} that can be
 #'   rendered in R Markdown/Quarto documents, Shiny applications, or the

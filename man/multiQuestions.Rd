@@ -64,8 +64,7 @@ validate the input before passing it.}
 labels, navigation text, result page text and other UI elements
 automatically. Currently supported: \code{"en"} (English, default),
 \code{"de"} (German), \code{"fr"} (French), and \code{"es"} (Spanish).
-To request additional languages,
-please open an issue on GitHub.}
+To request additional languages, please open an issue on GitHub.}
 
 \item{shuffle}{logical; if \code{TRUE}, the order of questions is randomized
 each time the widget is rendered or the quiz is restarted with 'Try again'.
@@ -110,7 +109,7 @@ All other properties are rescaled accordingly. The default is \code{16}.}
 The default is \code{20}.}
 
 \item{questionFontSize}{integer; the font size in pixels for the question text.
-The default is \code{18}.}
+The default is \code{16}.}
 
 \item{titleAlign}{character; the alignment of the title text. One of \code{"left"}
 (default), \code{"center"}, or \code{"right"}.}
@@ -196,6 +195,15 @@ both single-choice and multiple-choice questions.
 The quiz mode is auto-detected: if \strong{any} question has multiple
 correct answers (\code{length(answer) > 1}), all questions use checkboxes
 (multiple-choice mode). Otherwise, radio buttons are used (single-choice).
+An optional tip button can provide hints per question (custom text or,
+in MC mode, the number of correct answers).
+
+
+\strong{Text formatting:} Since quiz content is rendered as HTML, you can
+use HTML tags in question and option strings: \code{<em>} for italics
+(e.g. species names), \code{<strong>} for bold, \code{<code>} for inline
+code, or \code{<span>} with inline CSS for colored text. Standard Markdown
+formatting does \emph{not} work inside quiz strings.
 }
 \examples{
 \donttest{
