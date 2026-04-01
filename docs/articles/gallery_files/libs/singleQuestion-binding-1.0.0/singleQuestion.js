@@ -1,3 +1,7 @@
+// Original quiz concept inspired by Ozzie Kirkby
+// (https://codepen.io/ozzie/pen/pvrVLm), MIT licensed.
+// Reimplemented from scratch as an htmlwidget by Saskia Otto.
+
 HTMLWidgets.widget({
 
   name: 'singleQuestion',
@@ -415,6 +419,9 @@ HTMLWidgets.widget({
               if (rowElMC) {
                 rowElMC.addEventListener('click', function() {
                   this.classList.toggle('sqq-selected');
+                  // Update background color based on selection state
+                  var isSelected = this.classList.contains('sqq-selected');
+                  this.style.backgroundColor = isSelected ? darkenColor(optionBg, 0.3) : optionBg;
                   // Update letter color based on selection state
                   var letterDiv = this.querySelector('.sqq-div-letter');
                   if (letterDiv) {

@@ -90,6 +90,6 @@ fill-the-blanks quiz (right).
 1.  The development of the `singleQuestion` quiz was inspired by Ozzie
     Kirkby and his JS/HTML/CSS code on
     [codepen.io](https://codepen.io/ozzie/pen/pvrVLm).
-2.  Abhilash Narayan and his JS/HTML/CSS code on
-    [codepen.io](https://codepen.io/abhilashn/pen/BRepQz) served as
-    basis for the `multiQuestions` quiz.
+2.  The development of the `multiQuestions` quiz was inspired by
+    Abhilash Narayan and his JS/HTML/CSS code on
+    [codepen.io](https://codepen.io/abhilashn/pen/BRepQz).

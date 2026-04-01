@@ -24,17 +24,30 @@ string and have \code{'px'} appended.}
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
 }
+\value{
+\code{multiQuestionsOutput} returns an HTML output element for use
+  in a Shiny UI definition. \code{renderMultiQuestions} returns a
+  server-side rendering function to be assigned to an output slot.
+}
 \description{
 Output and render functions for using multiQuestions within Shiny
 applications and interactive Rmd documents.
 }
 \examples{
-\dontrun{
+if (interactive()) {
 library(shiny)
 
 x <- list(
-  q1 = list("What is 2+2?", c("3", "4", "5"), 2),
-  q2 = list("What is 3*3?", c("6", "9", "12"), 2)
+  q1 = list(
+    question = "What is 2+2?",
+    options = c("3", "4", "5"),
+    answer = 2
+  ),
+  q2 = list(
+    question = "What is 3*3?",
+    options = c("6", "9", "12"),
+    answer = 2
+  )
 )
 
 ui <- fluidPage(

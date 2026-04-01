@@ -11,6 +11,9 @@ Description: Creates interactive JavaScript-based quizzes as 'HTML' widgets. Off
     single-choice and multiple-choice modes from the input data, support customizable
     styling, keyboard navigation, and multilingual UI (English, German, French,
     Spanish). Designed for use in 'R Markdown', 'Quarto', and 'Shiny' applications.
+    The singleQuestion() quiz design was inspired by Ozzie Kirkby
+    <https://codepen.io/ozzie/pen/pvrVLm>. The multiQuestions() quiz design
+    was inspired by Abhilash Narayan <https://codepen.io/abhilashn/pen/BRepQz>.
 URL: https://github.com/saskiaotto/rquiz, https://saskiaotto.github.io/rquiz/
 BugReports: https://github.com/saskiaotto/rquiz/issues
 VignetteBuilder: knitr

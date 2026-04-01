@@ -377,6 +377,10 @@ fillBlanks <- function(x, title = NULL,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
+#' @return \code{fillBlanksOutput} returns an HTML output element for use
+#'   in a Shiny UI definition. \code{renderFillBlanks} returns a
+#'   server-side rendering function to be assigned to an output slot.
+#' 
 #' @examples
 #' \dontrun{
 #' library(shiny)

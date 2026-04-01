@@ -1,3 +1,7 @@
+// Original quiz concept inspired by Ozzie Kirkby
+// (https://codepen.io/ozzie/pen/pvrVLm), MIT licensed.
+// Reimplemented from scratch as an htmlwidget by Saskia Otto.
+
 HTMLWidgets.widget({
 
   name: 'singleQuestion',

@@ -1,3 +1,7 @@
+// Original quiz concept inspired by Abhilash Narayan
+// (https://codepen.io/abhilashn/pen/BRepQ), MIT licensed.
+// Reimplemented from scratch as an htmlwidget by Saskia Otto.
+
 HTMLWidgets.widget({
 
   name: 'multiQuestions',

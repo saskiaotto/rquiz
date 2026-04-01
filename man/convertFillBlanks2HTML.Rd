@@ -47,17 +47,6 @@ HTML strings with blank input fields. These strings are then used by the
 fillBlanks JavaScript code and appended to the HTML cloze and option
 div elements.
 }
-\examples{
-\dontrun{
-x <- list(
-  cloze = "R is a $$!programming!$$ language and free software environment
-   for $$!statistical computing!$$ and graphics.",
-  addOptions = c("natural", "colloquial", "movies", "audio")
-)
-convertFillBlanks2HTML(x, blanksWidth = NULL, blanksAlign = "center")
-}
-
-}
 \seealso{
 \code{\link{fillBlanks}}, \code{\link{checkFillBlanks}}
 }

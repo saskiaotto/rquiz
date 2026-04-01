@@ -430,8 +430,12 @@ singleQuestion <- function(x,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
+#' @return \code{singleQuestionOutput} returns an HTML output element for use
+#'   in a Shiny UI definition. \code{renderSingleQuestion} returns a
+#'   server-side rendering function to be assigned to an output slot.
+#' 
 #' @examples
-#' \dontrun{
+#' if (interactive()) {
 #' library(shiny)
 #'
 #' ui <- fluidPage(
@@ -441,7 +445,11 @@ singleQuestion <- function(x,
 #' server <- function(input, output) {
 #'   output$quiz1 <- renderSingleQuestion({
 #'     singleQuestion(
-#'       x = list("What is 2+2?", c("3", "4", "5"), 2),
+#'       x = list(
+#'         question = "What is 2+2?",
+#'         options = c("3", "4", "5"),
+#'         answer = 2
+#'       ),
 #'       title = "Quick Quiz"
 #'     )
 #'   })

@@ -36,10 +36,16 @@ renderSingleQuestion(expr, env = parent.frame(), quoted = FALSE)
   [`quote()`](https://rdrr.io/r/base/substitute.html))? This is useful
   if you want to save an expression in a variable.
 
+## Value
+
+`singleQuestionOutput` returns an HTML output element for use in a Shiny
+UI definition. `renderSingleQuestion` returns a server-side rendering
+function to be assigned to an output slot.
+
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+if (interactive()) {
 library(shiny)
 
 ui <- fluidPage(
@@ -49,12 +55,16 @@ ui <- fluidPage(
 server <- function(input, output) {
   output$quiz1 <- renderSingleQuestion({
     singleQuestion(
-      x = list("What is 2+2?", c("3", "4", "5"), 2),
+      x = list(
+        question = "What is 2+2?",
+        options = c("3", "4", "5"),
+        answer = 2
+      ),
       title = "Quick Quiz"
     )
   })
 }
 
 shinyApp(ui, server)
-} # }
+}
 ```

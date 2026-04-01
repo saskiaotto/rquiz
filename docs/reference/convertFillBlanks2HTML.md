@@ -69,16 +69,3 @@ A list with 3 named elements:
 
 [`fillBlanks`](https://saskiaotto.github.io/rquiz/reference/fillBlanks.md),
 [`checkFillBlanks`](https://saskiaotto.github.io/rquiz/reference/checkFillBlanks.md)
-
-## Examples
-
-``` r
-if (FALSE) { # \dontrun{
-x <- list(
-  cloze = "R is a $$!programming!$$ language and free software environment
-   for $$!statistical computing!$$ and graphics.",
-  addOptions = c("natural", "colloquial", "movies", "audio")
-)
-convertFillBlanks2HTML(x, blanksWidth = NULL, blanksAlign = "center")
-} # }
-```

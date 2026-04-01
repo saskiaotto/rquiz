@@ -36,15 +36,29 @@ renderMultiQuestions(expr, env = parent.frame(), quoted = FALSE)
   [`quote()`](https://rdrr.io/r/base/substitute.html))? This is useful
   if you want to save an expression in a variable.
 
+## Value
+
+`multiQuestionsOutput` returns an HTML output element for use in a Shiny
+UI definition. `renderMultiQuestions` returns a server-side rendering
+function to be assigned to an output slot.
+
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+if (interactive()) {
 library(shiny)
 
 x <- list(
-  q1 = list("What is 2+2?", c("3", "4", "5"), 2),
-  q2 = list("What is 3*3?", c("6", "9", "12"), 2)
+  q1 = list(
+    question = "What is 2+2?",
+    options = c("3", "4", "5"),
+    answer = 2
+  ),
+  q2 = list(
+    question = "What is 3*3?",
+    options = c("6", "9", "12"),
+    answer = 2
+  )
 )
 
 ui <- fluidPage(
@@ -58,5 +72,5 @@ server <- function(input, output) {
 }
 
 shinyApp(ui, server)
-} # }
+}
 ```

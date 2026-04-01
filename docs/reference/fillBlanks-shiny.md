@@ -36,6 +36,12 @@ renderFillBlanks(expr, env = parent.frame(), quoted = FALSE)
   [`quote()`](https://rdrr.io/r/base/substitute.html))? This is useful
   if you want to save an expression in a variable.
 
+## Value
+
+`fillBlanksOutput` returns an HTML output element for use in a Shiny UI
+definition. `renderFillBlanks` returns a server-side rendering function
+to be assigned to an output slot.
+
 ## Examples
 
 ``` r

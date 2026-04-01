@@ -41,16 +41,6 @@
 #'
 #' @keywords internal
 #'
-#' @examples
-#' \dontrun{
-#' x <- list(
-#'   cloze = "R is a $$!programming!$$ language and free software environment
-#'    for $$!statistical computing!$$ and graphics.",
-#'   addOptions = c("natural", "colloquial", "movies", "audio")
-#' )
-#' convertFillBlanks2HTML(x, blanksWidth = NULL, blanksAlign = "center")
-#' }
-#'
 convertFillBlanks2HTML <- function(x, blanksWidth, blanksAlign) {
 
   # Clean string: replace all "\n"
