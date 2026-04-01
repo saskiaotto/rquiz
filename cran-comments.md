@@ -17,7 +17,8 @@ This is a resubmission. The following changes were made as requested:
 
 * The NOTE mentions possibly misspelled words: "UI" (user interface),
   "cloze" (a standard term in language testing for fill-in-the-blank
-  exercises), and on R-oldrelease also "customizable" (correct US English
+  exercises), "Abhilash", "Kirkby", "Narayan" (proper names of credited 
+  authors), and on R-oldrelease also "customizable" (correct US English
   spelling). All are correct.
 
 * The NOTE flags URLs to codepen.io as "403 Forbidden" — CodePen blocks
