@@ -1,3 +1,14 @@
+## Resubmission
+
+This is a resubmission. The following changes were made as requested:
+
+- Added reference URLs for inspiring works in the Description field.
+- Added `\value` tags to all Shiny binding documentation (fillBlanks-shiny, 
+  multiQuestions-shiny, singleQuestion-shiny).
+- Replaced `\dontrun{}` with `if (interactive()) {}` in Shiny examples.
+- Removed examples for the unexported function `convertFillBlanks2HTML()`.
+
+
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
