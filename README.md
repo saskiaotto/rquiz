@@ -40,7 +40,7 @@ remotes::install_github("saskiaotto/rquiz")
 
 # or alternatively
 # install.packages("pak")
-pak::install("saskiaotto/rquiz")
+pak::pkg_install("saskiaotto/rquiz")
 ```
 
 ## Quiz Types
