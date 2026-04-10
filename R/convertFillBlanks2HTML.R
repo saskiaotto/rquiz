@@ -18,9 +18,10 @@
 #'         \item \code{$addOptions} A character vector containing additional
 #'                answer options to show in the tip section.
 #'      }
-#' @param blanksWidth character; a string providing the width (in pixels) of the blank fields.
-#'        This is defined by the user in the function \code{\link{fillBlanks}}. If
-#'        set to \code{NULL}, the width is chosen by the system.
+#' @param blanksWidth character; the width of blank input fields, passed from
+#'        \code{\link{fillBlanks}}. Can be \code{"auto"} (auto-sized based on
+#'        longest answer), a fixed CSS value (e.g. \code{"150px"}), or
+#'        \code{NULL} for the browser default.
 #' @param blanksAlign character; the default alignment of the answer options once placed into
 #'        the correct blank field is \code{"center"}. Other options are \code{"left"} and
 #'        \code{"right"}. The former is more suitable for coding syntax. This is
