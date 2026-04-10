@@ -53,8 +53,9 @@
 #'        minimum height.
 #' @param blanksWidth character; the width of blank input fields. The default is
 #'        \code{"auto"}, which sizes fields based on the longest correct answer
-#'        (minimum 50px). Set to a fixed value like \code{"150px"} or \code{NULL}
-#'        for browser default.
+#'        (minimum 50px). If the cloze text uses \code{<pre>} tags, a monospace font
+#'        is used for measuring. Set to a fixed value like \code{"150px"} for a
+#'        specific width, or \code{NULL} for browser default.
 #' @param blanksAlign character; the alignment of text in filled blanks. One of
 #'        \code{"center"} (default), \code{"left"}, or \code{"right"}.
 #' @param fontFamily character; the font family for all text elements in CSS style.
@@ -380,9 +381,9 @@ fillBlanks <- function(x, title = NULL,
 #' @return \code{fillBlanksOutput} returns an HTML output element for use
 #'   in a Shiny UI definition. \code{renderFillBlanks} returns a
 #'   server-side rendering function to be assigned to an output slot.
-#' 
+#'
 #' @examples
-#' \dontrun{
+#' if (interactive()) {
 #' library(shiny)
 #'
 #' txt <- list(

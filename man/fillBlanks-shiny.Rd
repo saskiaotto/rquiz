@@ -34,7 +34,7 @@ Output and render functions for using fillBlanks within Shiny
 applications and interactive Rmd documents.
 }
 \examples{
-\dontrun{
+if (interactive()) {
 library(shiny)
 
 txt <- list(
