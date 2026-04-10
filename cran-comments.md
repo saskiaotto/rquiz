@@ -1,3 +1,8 @@
+## Resubmission (2nd)
+
+This is a second resubmission. Fixed remaining `\dontrun{}` in the 
+`fillBlanks-shiny` example that was missed in the previous resubmission.
+
 ## Resubmission
 
 This is a resubmission. The following changes were made as requested:
