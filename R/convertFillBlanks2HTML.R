@@ -58,7 +58,7 @@ convertFillBlanks2HTML <- function(x, blanksWidth, blanksAlign) {
 
   # Create style string for input fields
   if (!is.null(blanksWidth) && blanksWidth != "auto") {
-    style1 <- paste0("min-width:", blanksWidth)
+    style1 <- paste0("width:", blanksWidth)
   } else {
     style1 <- NULL
   }

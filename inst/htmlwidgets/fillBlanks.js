@@ -173,12 +173,14 @@ HTMLWidgets.widget({
             answerTexts = Object.values(quizAnswers);
           }
           // Measure text width using a hidden span
+          // Detect if cloze uses <pre> (monospace font)
+          var hasPre = quizCloze.indexOf('<pre') !== -1;
           var measureSpan = document.createElement('span');
           measureSpan.style.visibility = 'hidden';
           measureSpan.style.position = 'absolute';
           measureSpan.style.whiteSpace = 'nowrap';
           measureSpan.style.fontFamily = fontFamily;
-          measureSpan.style.fontSize = fontSize + 'px';
+          measureSpan.style.fontFamily = hasPre ? 'monospace' : fontFamily;
           document.body.appendChild(measureSpan);
           var maxWidth = 0;
           answerTexts.forEach(function(txt) {
@@ -301,7 +303,7 @@ HTMLWidgets.widget({
 
           // TOGGLE TIPS VISIBILITY
           let tipsVisible = false;
-  
+
           buttonTip.addEventListener('click', function () {
             tipsVisible = !tipsVisible; // Toggle state
             buttonTip.setAttribute('aria-expanded', tipsVisible ? 'true' : 'false');
@@ -317,7 +319,7 @@ HTMLWidgets.widget({
               buttonTip.textContent = txtTipBtnShow;
             }
           });
-  
+
         }
 
 
@@ -399,7 +401,7 @@ HTMLWidgets.widget({
         }
 
 
-        
+
       // end of renderValue Function
       },
 

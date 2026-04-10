@@ -20,9 +20,10 @@ convertFillBlanks2HTML(x, blanksWidth, blanksAlign)
           answer options to show in the tip section.
 }}
 
-\item{blanksWidth}{character; a string providing the width (in pixels) of the blank fields.
-This is defined by the user in the function \code{\link{fillBlanks}}. If
-set to \code{NULL}, the width is chosen by the system.}
+\item{blanksWidth}{character; the width of blank input fields, passed from
+\code{\link{fillBlanks}}. Can be \code{"auto"} (auto-sized based on
+longest answer), a fixed CSS value (e.g. \code{"150px"}), or
+\code{NULL} for the browser default.}
 
 \item{blanksAlign}{character; the default alignment of the answer options once placed into
 the correct blank field is \code{"center"}. Other options are \code{"left"} and
