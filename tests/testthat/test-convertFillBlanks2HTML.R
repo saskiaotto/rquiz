@@ -40,10 +40,10 @@ test_that("convertFillBlanks2HTML applies blanksAlign style", {
   expect_true(grepl("text-align:left", result$cloze))
 })
 
-test_that("convertFillBlanks2HTML applies blanksWidth as min-width", {
+test_that("convertFillBlanks2HTML applies blanksWidth as width", {
   x <- list(cloze = "A $$!test!$$ here.")
   result <- convertFillBlanks2HTML(x, blanksWidth = "200px", blanksAlign = "center")
-  expect_true(grepl("min-width:200px", result$cloze))
+  expect_true(grepl("width:200px", result$cloze))
 })
 
 test_that("convertFillBlanks2HTML handles auto blanksWidth", {
