@@ -33,7 +33,8 @@ in my Data Science 1 course).
 
 ## Installation
 
-Install the released version from CRAN:
+You can install the released version of rquiz from
+[CRAN](https://cran.r-project.org/package=rquiz) with:
 
 ``` r
 install.packages("rquiz")

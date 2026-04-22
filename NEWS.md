@@ -1,8 +1,8 @@
 # rquiz 1.0.0
 
-Complete overhaul of the package, including new features, accessibility
-improvements, unified design, and CRAN-ready packaging. Migrated from
-GitLab (private) to GitHub (public) and submitted to CRAN.
+Initial CRAN release. Complete overhaul of the package, including new features, 
+accessibility improvements, unified design, and CRAN-ready packaging. Migrated 
+from GitLab (private) to GitHub (public).
 
 ## Breaking changes
 

@@ -71,15 +71,17 @@
 </h1>
 </div>
 <!-- badges: start -->
-<!-- [![R-CMD-check](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml) -->
 
 <p><strong>rquiz</strong> provides interactive quizzes as HTML widgets for R Markdown, Quarto, and Shiny applications. It offers three quiz types: a single question with instant feedback (<code>singleQuestion</code>), a multi-question quiz with navigation, timer, and results (<code>multiQuestions</code>), and fill-in-the-blank cloze exercises (<code>fillBlanks</code>). All quizzes support single-choice and multiple-choice modes, customizable styling, and multilingual UI.</p>
 <p>I developed this package for my <strong>Data Science in Biology</strong> modules at the University of Hamburg, where I have been using and testing it with students since 2020 in HTML-based lecture slides (see e.g. <a href="https://saskiaotto.github.io/uham-bio-data-science-1/05-r-basics-variables-vectors.html#/quiz-1-zuweisungen" class="external-link">fill-in-the-blank quiz</a> and <a href="https://saskiaotto.github.io/uham-bio-data-science-1/05-r-basics-variables-vectors.html#/abschlussquiz-1" class="external-link">multi-page quiz</a> in my Data Science 1 course).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version from GitHub:</p>
+<p>You can install the released version of rquiz from <a href="https://cran.r-project.org/package=rquiz" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rquiz"</span><span class="op">)</span></span></code></pre></div>
+<p>Or install the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"saskiaotto/rquiz"</span><span class="op">)</span></span>
 <span></span>
@@ -141,6 +143,7 @@ Single-question quiz (left), multi-page quiz (center), and fill-the-blanks quiz 
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=rquiz" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/saskiaotto/rquiz/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/saskiaotto/rquiz/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -179,7 +182,9 @@ Single-question quiz (left), multi-page quiz (center), and fill-the-blanks quiz 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/saskiaotto" class="external-link"><img src="https://img.shields.io/badge/author-Saskia%20Otto-blue" alt="Author: Saskia Otto"></a></li>
+<li><a href="https://cran.r-project.org/package=SCIproj" class="external-link"><img src="https://www.r-pkg.org/badges/version/rquiz" alt="CRAN status"></a></li>
+<li><a href="https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://cran.r-project.org/package=rquiz" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rquiz" alt="CRAN downloads total"></a></li>
 <li><a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT"></a></li>
 </ul>
 </div>

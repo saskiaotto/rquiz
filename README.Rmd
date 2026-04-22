@@ -23,7 +23,7 @@ I developed this package for my **Data Science in Biology** modules at the Unive
 
 ## Installation
 
-Install the released version from CRAN:
+You can install the released version of rquiz from [CRAN](https://cran.r-project.org/package=rquiz) with:
 
 ```{r eval=FALSE}
 install.packages("rquiz")
