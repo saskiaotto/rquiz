@@ -5,10 +5,11 @@
 
 <!-- badges: start -->
 
-<!-- [![R-CMD-check](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml) -->
-
-[![Author: Saskia
-Otto](https://img.shields.io/badge/author-Saskia%20Otto-blue)](https://github.com/saskiaotto)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rquiz)](https://cran.r-project.org/package=SCIproj)
+[![R-CMD-check](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml)
+[![CRAN downloads
+total](https://cranlogs.r-pkg.org/badges/grand-total/rquiz)](https://cran.r-project.org/package=rquiz)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 <!-- badges: end -->
@@ -32,7 +33,13 @@ in my Data Science 1 course).
 
 ## Installation
 
-You can install the development version from GitHub:
+Install the released version from CRAN:
+
+``` r
+install.packages("rquiz")
+```
+
+Or install the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
