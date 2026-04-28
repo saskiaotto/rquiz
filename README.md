@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/rquiz)](https://cran.r-project.org/package=SCIproj)
+status](https://www.r-pkg.org/badges/version/rquiz)](https://cran.r-project.org/package=rquiz)
 [![R-CMD-check](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/saskiaotto/rquiz/actions/workflows/R-CMD-check.yaml)
 [![CRAN downloads
 total](https://cranlogs.r-pkg.org/badges/grand-total/rquiz)](https://cran.r-project.org/package=rquiz)
